@@ -60,6 +60,7 @@
 		if (localStorage.getItem(`${problem.id}`) !== '1') {
 			localStorage.setItem(`${problem.id}`, '0');
 		}
+		timerStarted = true;
 		interval = setInterval(() => {
 			seconds++;
 			if (seconds >= 60) {
@@ -70,7 +71,6 @@
 					hours++;
 				}
 			}
-			timerStarted = true;
 		}, 1000);
 
 		// Every 30 seconds, save the time to local storage
