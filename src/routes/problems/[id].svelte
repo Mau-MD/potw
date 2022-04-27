@@ -111,9 +111,9 @@
 
 <div class="w-3/4 m-auto my-16" transition:slide>
 	<div class="flex items-center justify-center flex-col md:flex-row">
-		<div class="cursor-pointer flex items-center" on:click={() => goto('/')}>
+		<div class="cursor-pointer flex items-center md:flex-row flex-col" on:click={() => goto('/')}>
 			<Icon icon="simple-icons:leetcode" class="w-16 h-16 md:mr-6 mb-2 md:mb-0" />
-			<h1 class="text-xl font-bold">{problem.name}</h1>
+			<h1 class="text-xl font-bold text-center">{problem.name}</h1>
 		</div>
 		<a class="md:ml-auto" href={problem.url} target="_blank">
 			<button
