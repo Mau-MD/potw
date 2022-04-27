@@ -12,6 +12,8 @@
 </script>
 
 <script lang="ts">
+	import { browser } from '$app/env';
+
 	import { goto, invalidate } from '$app/navigation';
 	import supabase from '$lib/db';
 	import Icon from '@iconify/svelte';
@@ -21,9 +23,9 @@
 
 	export let problem: Problem;
 
-	let solved = localStorage.getItem(`${problem.id}`) === '1';
-	let showSubjects = solved;
-	let showSolved = solved;
+	let solved = false;
+	let showSubjects = false;
+	let showSolved = false;
 
 	let seconds = 0;
 	let minutes = 0;
@@ -46,6 +48,10 @@
 		hours = parseInt(time.hours);
 		minutes = parseInt(time.minutes);
 		seconds = parseInt(time.seconds);
+
+		solved = localStorage.getItem(`${problem.id}`) === '1';
+		showSubjects = solved;
+		showSolved = solved;
 	});
 
 	function startTimer() {
@@ -99,9 +105,16 @@
 	}
 </script>
 
+<svelte:head>
+	<title>{browser ? problem.name : 'Loading...'} | Intern</title>
+</svelte:head>
+
 <div class="w-3/4 m-auto my-16" transition:slide>
-	<div class="flex items-center flex-col md:flex-row cursor-pointer" on:click={() => goto('/')}>
-		<Icon icon="simple-icons:leetcode" class="w-16 h-16 mr-6" />
+	<div
+		class="flex items-center justify-center flex-col md:flex-row cursor-pointer"
+		on:click={() => goto('/')}
+	>
+		<Icon icon="simple-icons:leetcode" class="w-16 h-16 md:mr-6 mb-2 md:mb-0" />
 		<h1 class="text-xl font-bold">{problem.name}</h1>
 		<a class="md:ml-auto" href={problem.url} target="_blank">
 			<button

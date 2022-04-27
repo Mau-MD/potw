@@ -1,5 +1,6 @@
 <script lang="ts">
 	import Icon from '@iconify/svelte';
+	import { fade } from 'svelte/transition';
 
 	export let name: string;
 	export let platform: string;
@@ -7,10 +8,16 @@
 	export let solved = false;
 	export let started = false;
 
+	export let loading: boolean;
+
 	$: truncated = name.length > 12 ? name.substring(0, 12) + '...' : name;
 </script>
 
-<div class="transition-all hover:shadow-pink-500/40 hover:scale-105 shadow-pink-500/20 shadow-lg">
+<div
+	class={`transition-all hover:shadow-pink-500/40 hover:scale-105 shadow-pink-500/20 shadow-lg ${
+		loading ? 'blur-lg' : 'blur-none'
+	}`}
+>
 	{#if solved || started}
 		<div class={`text-center ${solved ? 'bg-pink-700' : 'bg-cyan-700'} text-[12px] rounded-t-lg`}>
 			{solved ? 'Resuelto' : 'Empezado'}

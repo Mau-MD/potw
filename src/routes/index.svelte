@@ -21,9 +21,14 @@
 	import type { Load } from '.svelte-kit/types/src/routes';
 	import { differenceInHours, getISOWeek, nextMonday, startOfToday } from 'date-fns';
 	import { slide } from 'svelte/transition';
+	import { browser } from '$app/env';
 
 	export let problems: Problem[];
 </script>
+
+<svelte:head>
+	<title>Problemas de la Semana | Intern</title>
+</svelte:head>
 
 <div class="flex items-center justify-center h-full flex-col" transition:slide>
 	<h1 class="text-5xl font-bold text-center px-4 md:px-0 ">Problemas de la Semana</h1>
@@ -35,8 +40,9 @@
 				<ProblemCard
 					name={problem.name}
 					platform={problem.provider}
-					solved={localStorage.getItem(`${problem.id}`) === '1'}
-					started={localStorage.getItem(`${problem.id}`) === '0'}
+					loading={!browser}
+					solved={browser && localStorage.getItem(`${problem.id}`) === '1'}
+					started={browser && localStorage.getItem(`${problem.id}`) === '0'}
 				/></a
 			>
 		{/each}
