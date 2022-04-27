@@ -110,11 +110,12 @@
 </svelte:head>
 
 <div class="w-3/4 m-auto my-16" transition:slide>
-	<div
-		class="flex items-center justify-center flex-col md:flex-row cursor-pointer"
-		on:click={() => goto('/')}
-	>
-		<Icon icon="simple-icons:leetcode" class="w-16 h-16 md:mr-6 mb-2 md:mb-0" />
+	<div class="flex items-center justify-center flex-col md:flex-row cursor-pointer">
+		<Icon
+			icon="simple-icons:leetcode"
+			class="w-16 h-16 md:mr-6 mb-2 md:mb-0"
+			on:click={() => goto('/')}
+		/>
 		<h1 class="text-xl font-bold">{problem.name}</h1>
 		<a class="md:ml-auto" href={problem.url} target="_blank">
 			<button
