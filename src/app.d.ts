@@ -6,10 +6,15 @@ declare namespace App {
 	interface Locals {
 		userid: string;
 	}
+}
 
-	// interface Platform {}
-
-	// interface Session {}
-
-	// interface Stuff {}
+interface Problem {
+	url: string;
+	provider: string;
+	solvedBy: string[];
+	topics: string[];
+	id: number;
+	name: string;
+	createdAt: string;
+	week: number;
 }

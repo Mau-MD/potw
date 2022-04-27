@@ -1,60 +1,49 @@
 <script context="module" lang="ts">
-	export const prerender = true;
+	export async function load({}: Load) {
+		const { data, error } = await supabase
+			.from('problems')
+			.select()
+			.eq('week', getISOWeek(new Date()) - 16);
+
+		return {
+			props: {
+				problems: data,
+				error
+			}
+		};
+	}
 </script>
 
 <script lang="ts">
-	import Counter from '$lib/Counter.svelte';
+	import Countdown from '$lib/components/Countdown.svelte';
+	import ProblemCard from '$lib/components/ProblemCard.svelte';
+	import supabase from '$lib/db';
+	import type { Load } from '.svelte-kit/types/src/routes';
+	import { differenceInHours, getISOWeek, nextMonday, startOfToday } from 'date-fns';
+	import { slide } from 'svelte/transition';
+
+	export let problems: Problem[];
 </script>
 
-<svelte:head>
-	<title>Home</title>
-	<meta name="description" content="Svelte demo app" />
-</svelte:head>
+<div class="flex items-center justify-center h-full flex-col" transition:slide>
+	<h1 class="text-5xl font-bold text-center px-4 md:px-0 ">Problemas de la Semana</h1>
+	<h2 class="text-xl mt-5 text-gray-400 mb-[100px]">Intern CETYS</h2>
 
-<section>
-	<h1>
-		<div class="welcome">
-			<picture>
-				<source srcset="svelte-welcome.webp" type="image/webp" />
-				<img src="svelte-welcome.png" alt="Welcome" />
-			</picture>
-		</div>
+	<div class="flex flex-col gap-4">
+		{#each problems as problem}
+			<a sveltekit:prefetch href={`/problems/${encodeURIComponent(problem.name)}`}>
+				<ProblemCard
+					name={problem.name}
+					platform={problem.provider}
+					solved={localStorage.getItem(`${problem.id}`) === '1'}
+					started={localStorage.getItem(`${problem.id}`) === '0'}
+				/></a
+			>
+		{/each}
+	</div>
 
-		to your new<br />SvelteKit app
-	</h1>
-
-	<h2>
-		try editing <strong>src/routes/index.svelte</strong>
-	</h2>
-
-	<Counter />
-</section>
-
-<style>
-	section {
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		align-items: center;
-		flex: 1;
-	}
-
-	h1 {
-		width: 100%;
-	}
-
-	.welcome {
-		position: relative;
-		width: 100%;
-		height: 0;
-		padding: 0 0 calc(100% * 495 / 2048) 0;
-	}
-
-	.welcome img {
-		position: absolute;
-		width: 100%;
-		height: 100%;
-		top: 0;
-		display: block;
-	}
-</style>
+	<div class="absolute bottom-5 text-xl font-bold flex flex-col items-center">
+		<span class="font-normal text-sm mb-2 text-gray-300">Siguiente set de problemas</span>
+		<Countdown hoursLeft={differenceInHours(nextMonday(startOfToday()), new Date())} />
+	</div>
+</div>
