@@ -92,6 +92,23 @@
 		clearInterval(saveInterval);
 	}
 
+	function resetTimer() {
+		timerStarted = false;
+		hours = 0;
+		minutes = 0;
+		seconds = 0;
+		localStorage.setItem(
+			`time-${problem.id}`,
+			JSON.stringify({
+				hours: 0,
+				minutes: 0,
+				seconds: 0
+			})
+		);
+		clearInterval(interval);
+		clearInterval(saveInterval);
+	}
+
 	function addLeadingZero(num: number) {
 		if (num < 10) {
 			return '0' + num;
@@ -139,6 +156,11 @@
 						disabled={timerStarted}
 						on:click={startTimer}
 						>Empezar
+					</button>
+					<button
+						class="py-2 mt-4 w-full sm:w-2/6 border-2 border-white/50  text-center rounded rounded-l-none bg-slate-500/10 transition-all hover:bg-slate-900 mx-2"
+						on:click={resetTimer}
+						>Reiniciar
 					</button>
 					<button
 						class="py-2 mt-4 w-full sm:w-2/6 border-2 border-white/50  text-center rounded rounded-l-none bg-slate-500/10 transition-all hover:bg-slate-900"
