@@ -106,7 +106,7 @@
 </script>
 
 <svelte:head>
-	<title>{browser ? problem.name : 'Loading...'} | Intern</title>
+	<title>{problem.name} | Intern</title>
 </svelte:head>
 
 <div class="w-3/4 m-auto my-16" transition:slide>
