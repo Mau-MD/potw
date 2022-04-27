@@ -3,8 +3,8 @@
 		const { data, error } = await supabase
 			.from('problems')
 			.select()
-			.eq('week', getISOWeek(new Date()) - 16);
-
+			.eq('week', getISOWeek(new Date()) - 16)
+			.order('id', { ascending: true });
 		return {
 			props: {
 				problems: data,
