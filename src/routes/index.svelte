@@ -19,11 +19,23 @@
 	import ProblemCard from '$lib/components/ProblemCard.svelte';
 	import supabase from '$lib/db';
 	import type { Load } from '.svelte-kit/types/src/routes';
-	import { differenceInHours, getISOWeek, nextMonday, startOfToday } from 'date-fns';
+	import {
+		differenceInHours,
+		getISOWeek,
+		nextMonday,
+		startOfToday,
+		differenceInSeconds
+	} from 'date-fns';
 	import { slide } from 'svelte/transition';
 	import { browser } from '$app/env';
 
 	export let problems: Problem[];
+
+	let seconds = differenceInSeconds(nextMonday(startOfToday()), new Date());
+	let minutes = Math.floor(seconds / 60);
+	seconds %= 60;
+	let hours = Math.floor(minutes / 60);
+	minutes %= 60;
 </script>
 
 <svelte:head>
@@ -50,6 +62,6 @@
 
 	<div class="absolute bottom-5 text-xl font-bold flex flex-col items-center">
 		<span class="font-normal text-sm mb-2 text-gray-300">Siguiente set de problemas</span>
-		<Countdown hoursLeft={differenceInHours(nextMonday(startOfToday()), new Date())} />
+		<Countdown secondsLeft={seconds} minutesLeft={minutes} hoursLeft={hours} />
 	</div>
 </div>

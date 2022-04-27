@@ -2,8 +2,8 @@
 	import { onMount } from 'svelte';
 
 	export let hoursLeft = 0;
-	let minutesLeft = 0;
-	let secondsLeft = 0;
+	export let minutesLeft = 0;
+	export let secondsLeft = 0;
 
 	let timer: NodeJS.Timer;
 
