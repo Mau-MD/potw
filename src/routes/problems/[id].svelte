@@ -34,6 +34,8 @@
 	let interval: NodeJS.Timer;
 	let saveInterval: NodeJS.Timer;
 
+	let timerStarted = false;
+
 	let input = '';
 
 	onMount(() => {
@@ -68,6 +70,7 @@
 					hours++;
 				}
 			}
+			timerStarted = true;
 		}, 1000);
 
 		// Every 30 seconds, save the time to local storage
@@ -84,6 +87,7 @@
 	}
 
 	function stopTimer() {
+		timerStarted = false;
 		clearInterval(interval);
 		clearInterval(saveInterval);
 	}
@@ -132,6 +136,7 @@
 				<div class="flex justify-around items-center flex-col md:flex-row">
 					<button
 						class="py-2 mt-4 w-full sm:w-2/6 border-2 border-white/50  text-center rounded rounded-l-none bg-slate-500/10 transition-all hover:bg-slate-900"
+						disabled={timerStarted}
 						on:click={startTimer}
 						>Empezar
 					</button>
