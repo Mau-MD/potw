@@ -1,5 +1,5 @@
 <script context="module" lang="ts">
-	export async function load({}: Load) {
+	export const load: Load = async ({ params }) => {
 		const { data, error } = await supabase
 			.from('problems')
 			.select()
@@ -7,11 +7,11 @@
 			.order('id', { ascending: true });
 		return {
 			props: {
-				problems: data,
+				problems: data?.sort((a, b) => a.id - b.id),
 				error
 			}
 		};
-	}
+	};
 </script>
 
 <script lang="ts">

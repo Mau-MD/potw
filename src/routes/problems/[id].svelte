@@ -1,5 +1,5 @@
 <script lang="ts" context="module">
-	export async function load({ params }: Load) {
+	export const load: Load = async ({ params }) => {
 		const { data, error } = await supabase.from('problems').select().eq('name', params.id);
 
 		return {
@@ -8,7 +8,7 @@
 				error
 			}
 		};
-	}
+	};
 </script>
 
 <script lang="ts">
@@ -19,7 +19,7 @@
 	import Icon from '@iconify/svelte';
 	import type { Load } from '@sveltejs/kit';
 	import { onMount } from 'svelte';
-	import { slide } from 'svelte/transition';
+	import { slide, fade } from 'svelte/transition';
 
 	export let problem: Problem;
 
@@ -37,6 +37,9 @@
 	let timerStarted = false;
 
 	let input = '';
+	let error = false;
+	let numClicks = 0;
+	let submitText = 'Subir';
 
 	onMount(() => {
 		const time = JSON.parse(localStorage.getItem(`time-${problem.id}`) || '0') as {
@@ -116,13 +119,28 @@
 		return num;
 	}
 
+	function handleSubmit() {
+		if (!input) {
+			error = true;
+			return;
+		}
+		if (numClicks === 0) {
+			submitText = '¿Estas seguro?';
+		} else {
+			makeSubmission();
+		}
+		numClicks++;
+	}
+
 	async function makeSubmission() {
 		await supabase
 			.from('problems')
 			.update({ solvedBy: [...problem.solvedBy, input] })
 			.match({ name: problem.name });
+
 		localStorage.setItem(`${problem.id}`, '1');
 		input = '';
+		window.location.reload();
 	}
 </script>
 
@@ -180,10 +198,15 @@
 				/>
 				<button
 					class="py-2 mt-4 w-full md:w-2/6 border-2 border-white/50  text-center rounded md:rounded-l-none bg-slate-500/10 transition-all hover:bg-slate-900"
-					on:click={makeSubmission}
-					>Subir
+					on:click={handleSubmit}
+					>{submitText}
 				</button>
 			</div>
+			{#if error}
+				<div class="text-red-500 text-center mt-2" transition:fade>
+					<p>Debes ingresar tu nombre para poder subir tu solución</p>
+				</div>
+			{/if}
 		{/if}
 		<h2 class="text-xl font-bold mt-20">Temas:</h2>
 		<div
