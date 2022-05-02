@@ -1,9 +1,9 @@
 <script context="module" lang="ts">
-	export const load: Load = async ({ params }) => {
+	export const load: Load = async ({ params }: { number: number }) => {
 		const { data, error } = await supabase
 			.from('problems')
 			.select()
-			.eq('week', getISOWeek(new Date()) - 16)
+			.eq('week', params.number)
 			.order('id', { ascending: true });
 		return {
 			props: {
@@ -50,10 +50,17 @@
 		<div class="flex justify-between text-base font-normal mb-5">
 			<div
 				class="flex items-center cursor-pointer transition-all hover:-translate-x-1"
-				on:click={() => goto(`/week/${getISOWeek(new Date()) - 17}`)}
+				on:click={() => goto(`/week/${Math.max(parseInt($page.params.number) - 1, 1)}`)}
 			>
 				<Icon icon="akar-icons:chevron-left" class="w-8 h-8 mr-4" />
 				Semana Anterior
+			</div>
+			<div
+				class="flex items-center cursor-pointer transition-all hover:translate-x-1"
+				on:click={() => goto(`/week/${parseInt($page.params.number) + 1}`)}
+			>
+				Siguiente Semana
+				<Icon icon="akar-icons:chevron-right" class="w-8 h-8 ml-4" />
 			</div>
 		</div>
 		Problemas de la Semana
