@@ -75,7 +75,9 @@
 		{/each}
 	</div>
 
-	<div class="absolute bottom-5 text-xl font-bold flex flex-col items-center">
+	<div
+		class="relative md:absolute bottom-0 mt-10 md:mt-0 md:bottom-5 text-xl font-bold flex flex-col items-center"
+	>
 		<span class="font-normal text-sm mb-2 text-gray-300">Siguiente set de problemas</span>
 		<Countdown secondsLeft={seconds} minutesLeft={minutes} hoursLeft={hours} />
 	</div>
