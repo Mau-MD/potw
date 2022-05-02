@@ -55,17 +55,19 @@
 				<Icon icon="akar-icons:chevron-left" class="w-8 h-8 mr-4" />
 				Semana Anterior
 			</div>
-			<div
-				class="flex items-center cursor-pointer transition-all hover:translate-x-1"
-				on:click={() => goto(`/week/${parseInt($page.params.number) + 1}`)}
-			>
-				Siguiente Semana
-				<Icon icon="akar-icons:chevron-right" class="w-8 h-8 ml-4" />
-			</div>
+			{#if parseInt($page.params.number) + 1 <= getISOWeek(new Date()) - 16}
+				<div
+					class="flex items-center cursor-pointer transition-all hover:translate-x-1"
+					on:click={() => goto(`/week/${parseInt($page.params.number) + 1}`)}
+				>
+					Siguiente Semana
+					<Icon icon="akar-icons:chevron-right" class="w-8 h-8 ml-4" />
+				</div>
+			{/if}
 		</div>
 		Problemas de la Semana
 	</h1>
-	<h2 class="text-xl mt-5 text-gray-400 mb-[100px]">Intern CETYS</h2>
+	<h2 class="text-xl mt-5 text-gray-400 mb-[50px]">Intern CETYS</h2>
 
 	<div class="flex flex-col gap-4">
 		{#each problems as problem}
@@ -76,6 +78,7 @@
 					loading={!browser}
 					solved={browser && localStorage.getItem(`${problem.id}`) === '1'}
 					started={browser && localStorage.getItem(`${problem.id}`) === '0'}
+					challenging={problem.challenging}
 				/></a
 			>
 		{/each}

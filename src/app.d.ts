@@ -17,4 +17,5 @@ interface Problem {
 	name: string;
 	createdAt: string;
 	week: number;
+	challenging: boolean;
 }

@@ -58,7 +58,7 @@
 		</div>
 		Problemas de la Semana
 	</h1>
-	<h2 class="text-xl mt-5 text-gray-400 mb-[100px]">Intern CETYS</h2>
+	<h2 class="text-xl mt-5 text-gray-400 mb-[50px]">Intern CETYS</h2>
 
 	<div class="flex flex-col gap-4">
 		{#each problems as problem}
@@ -69,6 +69,7 @@
 					loading={!browser}
 					solved={browser && localStorage.getItem(`${problem.id}`) === '1'}
 					started={browser && localStorage.getItem(`${problem.id}`) === '0'}
+					challenging={problem.challenging}
 				/></a
 			>
 		{/each}

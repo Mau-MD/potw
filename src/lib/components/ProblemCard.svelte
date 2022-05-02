@@ -10,6 +10,8 @@
 
 	export let loading: boolean;
 
+	export let challenging = false;
+
 	$: truncated = name.length > 12 ? name.substring(0, 12) + '...' : name;
 </script>
 
@@ -18,9 +20,13 @@
 		loading ? 'blur-lg' : 'blur-none'
 	}`}
 >
-	{#if solved || started}
-		<div class={`text-center ${solved ? 'bg-pink-700' : 'bg-cyan-700'} text-[12px] rounded-t-lg`}>
-			{solved ? 'Resuelto' : 'Empezado'}
+	{#if solved || started || challenging}
+		<div
+			class={`text-center ${
+				solved ? 'bg-pink-700' : challenging ? 'bg-orange-500' : 'bg-cyan-700'
+			} text-[12px] rounded-t-lg`}
+		>
+			{solved ? 'Resuelto' : challenging ? 'Desafiante' : 'Empezado'}
 		</div>
 	{/if}
 	<div
