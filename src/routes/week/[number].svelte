@@ -31,6 +31,7 @@
 	import Icon from '@iconify/svelte';
 	import { goto } from '$app/navigation';
 	import { page } from '$app/stores';
+	import ProblemDashboard from '$lib/components/ProblemDashboard.svelte';
 
 	export let problems: Problem[];
 
@@ -45,7 +46,9 @@
 	<title>Problemas de la Semana | Intern</title>
 </svelte:head>
 
-<div class="flex items-center justify-center h-full flex-col" transition:slide>
+<ProblemDashboard {problems} />
+
+<!-- <div class="flex items-center justify-center h-full flex-col" transition:slide>
 	<h1 class="text-5xl font-bold text-center px-4 md:px-0 ">
 		<div class="flex justify-between text-base font-normal mb-5">
 			<div
@@ -88,4 +91,4 @@
 		<span class="font-normal text-sm mb-2 text-gray-300">Siguiente set de problemas</span>
 		<Countdown secondsLeft={seconds} minutesLeft={minutes} hoursLeft={hours} />
 	</div>
-</div>
+</div> -->
