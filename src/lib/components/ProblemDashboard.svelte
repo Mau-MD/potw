@@ -19,7 +19,7 @@
 	export let problems: Problem[];
 
 	let currPage = 0;
-	$: MAX_PAGES = Math.ceil(problems.length / 3);
+	$: MAX_PAGES = problems ? Math.ceil(problems.length / 3) : 0;
 	const PROBLEMS_PER_PAGE = 3;
 
 	let seconds = differenceInSeconds(nextMonday(startOfToday()), new Date());
@@ -32,13 +32,23 @@
 <div class="flex items-center justify-center h-full flex-col" transition:slide>
 	<h1 class="text-5xl font-bold text-center px-4 md:px-0 ">
 		<div class="flex justify-between text-base font-normal mb-5">
-			<div
-				class="flex items-center cursor-pointer transition-all hover:-translate-x-1"
-				on:click={() => goto(`/week/${getISOWeek(new Date()) - 17}`)}
-			>
-				<Icon icon="akar-icons:chevron-left" class="w-8 h-8 mr-4" />
-				Semana Anterior
-			</div>
+			{#if $page.params.number}
+				<div
+					class="flex items-center cursor-pointer transition-all hover:-translate-x-1 "
+					on:click={() => goto(`/week/${Math.max(parseInt($page.params.number) - 1, 1)}`)}
+				>
+					<Icon icon="akar-icons:chevron-left" class="w-8 h-8 mr-4" />
+					Semana Anterior
+				</div>
+			{:else}
+				<div
+					class="flex items-center cursor-pointer transition-all hover:-translate-x-1"
+					on:click={() => goto(`/week/${getISOWeek(new Date()) - 17}`)}
+				>
+					<Icon icon="akar-icons:chevron-left" class="w-8 h-8 mr-4" />
+					Semana Anterior
+				</div>
+			{/if}
 			{#if parseInt($page.params.number) + 1 <= getISOWeek(new Date()) - 16}
 				<div
 					class="flex items-center cursor-pointer transition-all hover:translate-x-1"

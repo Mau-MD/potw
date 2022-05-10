@@ -14,7 +14,7 @@
 <script lang="ts">
 	import { browser } from '$app/env';
 
-	import { goto, invalidate } from '$app/navigation';
+	import { afterNavigate, goto, invalidate } from '$app/navigation';
 	import supabase from '$lib/db';
 	import Icon from '@iconify/svelte';
 	import type { Load } from '@sveltejs/kit';
@@ -41,7 +41,16 @@
 	let numClicks = 0;
 	let submitText = 'Subir';
 
+	let previousPath = '';
+
+	afterNavigate((navigation) => {
+		previousPath = navigation.from?.pathname || '';
+	});
+
 	onMount(() => {
+		solved = browser ? localStorage.getItem(`${problem.id}`) === '1' : false;
+		showSolved = solved;
+		showSubjects = solved;
 		const time = JSON.parse(localStorage.getItem(`time-${problem.id}`) || '0') as {
 			seconds: string;
 			minutes: string;
@@ -150,7 +159,10 @@
 
 <div class="w-3/4 m-auto my-16" transition:slide>
 	<div class="flex items-center justify-center flex-col md:flex-row">
-		<div class="cursor-pointer flex items-center md:flex-row flex-col" on:click={() => goto('/')}>
+		<div
+			class="cursor-pointer flex items-center md:flex-row flex-col"
+			on:click={() => goto(previousPath)}
+		>
 			<Icon icon="simple-icons:leetcode" class="w-16 h-16 md:mr-6 mb-2 md:mb-0" />
 			<h1 class="text-xl font-bold text-center">{problem.name}</h1>
 		</div>
