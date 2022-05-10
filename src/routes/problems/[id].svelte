@@ -44,7 +44,10 @@
 	let previousPath = '';
 
 	afterNavigate((navigation) => {
-		previousPath = navigation.from?.pathname || '';
+		previousPath = navigation.from?.pathname || '/';
+		if (previousPath === navigation.to.pathname) {
+			previousPath = '/';
+		}
 	});
 
 	onMount(() => {

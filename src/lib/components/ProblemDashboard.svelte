@@ -59,7 +59,7 @@
 				</div>
 			{/if}
 		</div>
-		Problemas de la Semana
+		<a sveltekit:prefetch href={`/week/${getISOWeek(new Date()) - 16}`}> Problemas de la Semana </a>
 	</h1>
 	<h2 class="text-xl mt-5 text-gray-400 mb-[50px]">Intern CETYS</h2>
 
