@@ -9,7 +9,8 @@
 		'https://i.imgur.com/RZ8F58R.jpg',
 		'https://i.imgur.com/KQbpFf2.jpg',
 		'https://i.imgur.com/ItW7cAs.jpg',
-		'https://i.imgur.com/Ksp5CWp.jpg'
+		'https://i.imgur.com/Ksp5CWp.jpg',
+		'https://i.imgur.com/q0NQRDK.jpg'
 	];
 </script>
 

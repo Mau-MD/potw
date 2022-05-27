@@ -19,7 +19,7 @@ const getPoints = (lastUser: LeetcodeUser, currUser: LeetcodeUser) => {
 };
 export const get: RequestHandler = async ({ params }): Promise<{ body: any }> => {
 	try {
-		const usernames = ['adrianfersa', 'voltageDifference', 'Clanie1', 'MrJ85', 'IAmRamiro3'];
+		const usernames = ['adrianfersa', 'voltageDifference', 'Clanie1', 'MrJ85', 'IAmRamiro3', 'Mani69'];
 
 		const data = await Promise.all(usernames.map(getUserData));
 
