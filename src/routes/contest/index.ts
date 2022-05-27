@@ -52,7 +52,7 @@ export const get: RequestHandler = async ({ params }): Promise<{ body: any }> =>
 			if (!pts?.place) {
 				return { ...curr, place: 0 };
 			}
-			return { ...curr, place: pts.place };
+			return { ...curr, place: pts.place, link: `https://leetcode.com/${curr.username}/` };
 		});
 
 		return {
@@ -63,5 +63,8 @@ export const get: RequestHandler = async ({ params }): Promise<{ body: any }> =>
 		};
 	} catch (err) {
 		console.log(err);
+		return {
+			body: { error: 'error' }
+		};
 	}
 };

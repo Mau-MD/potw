@@ -58,9 +58,11 @@
 	<div class="w-[100px] h-[100px] bg-gray-400 rounded-[50%]">
 		<img src={photo} class="w-full h-full object-cover rounded-[50%]" alt={user.username} />
 	</div>
-	<h2 class={`text-xl font-bold ${color}`}>
-		#{user.place} - {user.username}
-	</h2>
+	<a href={user.link} target="_blank" rel="noopener noreferrer">
+		<h2 class={`text-xl font-bold ${color}`}>
+			#{user.place} - {user.username}
+		</h2>
+	</a>
 	<span class="font-bold text-5xl">{pointsAnim}</span>
 	<div class="text-center">
 		<p class="text-green-400 font-bold">

@@ -29,4 +29,5 @@ interface LeetcodeUser {
 	ranking: number;
 	username: string;
 	place: number;
+	link: string;
 }
