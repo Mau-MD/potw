@@ -13,8 +13,8 @@ const getPoints = (lastUser: LeetcodeUser, currUser: LeetcodeUser) => {
 	return (
 		currUser.easySolved -
 		lastUser.easySolved +
-		2 * (currUser.mediumSolved - lastUser.mediumSolved) +
-		3 * (currUser.hardSolved - lastUser.hardSolved)
+		3 * (currUser.mediumSolved - lastUser.mediumSolved) +
+		7 * (currUser.hardSolved - lastUser.hardSolved)
 	);
 };
 export const get: RequestHandler = async ({ params }): Promise<{ body: any }> => {

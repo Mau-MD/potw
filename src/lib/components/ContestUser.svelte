@@ -32,8 +32,8 @@
 		medium = user.mediumSolved - prevUser.mediumSolved;
 		hard = user.hardSolved - prevUser.hardSolved;
 		points = allTime
-			? user.easySolved + 2 * user.mediumSolved + 3 * user.hardSolved
-			: easy + 2 * medium + 3 * hard;
+			? user.easySolved + 3 * user.mediumSolved + 7 * user.hardSolved
+			: easy + 3 * medium + 7 * hard;
 	}
 
 	$: {

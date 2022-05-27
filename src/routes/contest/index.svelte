@@ -22,7 +22,8 @@
 >
 	<div class="mb-20 text-center ">
 		<h1 class="text-4xl font-bold mb-2 ">Concurso Leetcode</h1>
-		<p class="text-gray-200">Primero que llegue a 65 puntos gana.</p>
+		<p class="text-gray-200">Primero que llegue a 85 puntos gana.</p>
+		<p class="text-gray-200">Easy > 1 - Medium > 3 - Hard > 7</p>
 	</div>
 	<div class="grid grid-cols-1 md:grid-cols-5 w-full md:gap-0 gap-10">
 		{#each currLeetcodeData as user, i}
