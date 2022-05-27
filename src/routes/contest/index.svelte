@@ -10,7 +10,9 @@
 		'https://i.imgur.com/KQbpFf2.jpg',
 		'https://i.imgur.com/ItW7cAs.jpg',
 		'https://i.imgur.com/Ksp5CWp.jpg',
-		'https://i.imgur.com/q0NQRDK.jpg'
+		'https://i.imgur.com/q0NQRDK.jpg',
+		'https://i.imgur.com/VpQqSAU.jpg', // Shago
+		'https://i.imgur.com/ySVfkmg.jpg'
 	];
 </script>
 
@@ -26,9 +28,9 @@
 		<p class="text-gray-200">Primero que llegue a 85 puntos gana.</p>
 		<p class="text-gray-200">Easy > 1 - Medium > 3 - Hard > 7</p>
 	</div>
-	<div class="grid grid-cols-1 md:grid-cols-5 w-full md:gap-0 gap-10">
+	<div class="grid grid-cols-1 md:grid-cols-5  w-full  gap-10">
 		{#each currLeetcodeData as user, i}
-			<ContestUser {user} prevUser={prevLeetcodeData[i]} photo={images[i]} />
+			<ContestUser {user} prevUser={prevLeetcodeData[i]} photo={images[i]} guest={i >= 5} />
 		{/each}
 	</div>
 </div>

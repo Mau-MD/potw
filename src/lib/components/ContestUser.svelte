@@ -4,6 +4,7 @@
 	export let user: LeetcodeUser;
 	export let prevUser: LeetcodeUser;
 	export let photo: string;
+	export let guest: boolean;
 
 	let easy = 0;
 	let medium = 0;
@@ -62,6 +63,9 @@
 		<h2 class={`text-xl font-bold ${color}`}>
 			#{user.place} - {user.username}
 		</h2>
+		{#if guest}
+			<h3 class={`text-sm text-center font-bold ${color}`}>Invitado</h3>
+		{/if}
 	</a>
 	<span class="font-bold text-5xl">{pointsAnim}</span>
 	<div class="text-center">
