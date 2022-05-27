@@ -104,4 +104,13 @@
 		<span class="font-normal text-sm mb-2 text-gray-300">Siguiente set de problemas</span>
 		<Countdown secondsLeft={seconds} minutesLeft={minutes} hoursLeft={hours} />
 	</div>
+
+	<div class="relative md:absolute bottom-4 right-4">
+		<a sveltekit:prefetch href="/contest">
+			<button
+				class="border-2 border-white px-4 py-2 rounded-md transition-all hover:bg-white hover:text-black"
+				>Concurso</button
+			>
+		</a>
+	</div>
 </div>
