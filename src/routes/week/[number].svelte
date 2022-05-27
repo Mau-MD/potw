@@ -5,6 +5,8 @@
 			.select()
 			.eq('week', params.number)
 			.order('id', { ascending: true });
+
+		console.log(data);
 		return {
 			props: {
 				problems: data?.sort((a, b) => a.id - b.id),
@@ -15,23 +17,10 @@
 </script>
 
 <script lang="ts">
-	import Countdown from '$lib/components/Countdown.svelte';
-	import ProblemCard from '$lib/components/ProblemCard.svelte';
+	import ProblemDashboard from '$lib/components/ProblemDashboard.svelte';
 	import supabase from '$lib/db';
 	import type { Load } from '.svelte-kit/types/src/routes';
-	import {
-		differenceInHours,
-		getISOWeek,
-		nextMonday,
-		startOfToday,
-		differenceInSeconds
-	} from 'date-fns';
-	import { slide } from 'svelte/transition';
-	import { browser } from '$app/env';
-	import Icon from '@iconify/svelte';
-	import { goto } from '$app/navigation';
-	import { page } from '$app/stores';
-	import ProblemDashboard from '$lib/components/ProblemDashboard.svelte';
+	import { differenceInSeconds, nextMonday, startOfToday } from 'date-fns';
 
 	export let problems: Problem[];
 

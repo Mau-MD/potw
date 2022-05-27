@@ -29,7 +29,11 @@
 	minutes %= 60;
 </script>
 
-<div class="flex items-center justify-center h-full flex-col" transition:slide>
+<div
+	class="flex items-center justify-center flex-col"
+	transition:slide
+	style="min-height: inherit;"
+>
 	<h1 class="text-5xl font-bold text-center px-4 md:px-0 ">
 		<div class="flex justify-between text-base font-normal mb-5">
 			{#if $page.params.number}

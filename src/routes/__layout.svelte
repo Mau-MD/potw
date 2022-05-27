@@ -11,7 +11,7 @@
 </svelte:head>
 <main>
 	<div
-		class="bg-[#0C1221] text-white h-[110vh] md:h-[100vh] w-[100vw] bg-right overflow-x-hidden"
+		class="bg-[#0C1221] text-white min-h-[110vh] md:min-h-[100vh] w-[100vw] bg-right overflow-x-hidden"
 		style="background-image: url({bg});"
 	>
 		<slot />

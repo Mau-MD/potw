@@ -5,6 +5,7 @@
 			.select()
 			.eq('week', getISOWeek(new Date()) - 16)
 			.order('id', { ascending: true });
+		console.log(data);
 		return {
 			props: {
 				problems: data?.sort((a, b) => a.id - b.id),

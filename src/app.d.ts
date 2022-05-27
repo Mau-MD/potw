@@ -19,3 +19,14 @@ interface Problem {
 	week: number;
 	challenging: boolean;
 }
+
+interface LeetcodeUser {
+	totalSolved: number;
+	easySolved: number;
+	mediumSolved: number;
+	hardSolved: number;
+	acceptanceRate: number;
+	ranking: number;
+	username: string;
+	place: number;
+}
