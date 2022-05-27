@@ -13,6 +13,9 @@
 	];
 </script>
 
+<svelte:head>
+	<title>Concurso | Intern</title>
+</svelte:head>
 <div
 	class="md:w-[80vw] m-auto min-h-min flex flex-col items-center justify-center  mb-10 md:my-10 my-20"
 	style="min-height: inherit;"
