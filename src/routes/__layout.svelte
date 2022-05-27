@@ -1,6 +1,20 @@
 <script lang="ts">
 	import '../app.css';
 	import bg from '$lib/assets/hero.jpg';
+
+	import NProgress from 'nprogress';
+	import { navigating } from '$app/stores';
+	import 'nprogress/nprogress.css';
+
+	$: {
+		if ($navigating) {
+			NProgress.start();
+		}
+
+		if (!$navigating) {
+			NProgress.done();
+		}
+	}
 </script>
 
 <svelte:head>
