@@ -31,7 +31,13 @@
 	</div>
 	<div class="grid grid-cols-1 md:grid-cols-5  w-full  gap-10">
 		{#each currLeetcodeData as user, i}
-			<ContestUser {user} prevUser={prevLeetcodeData[i]} photo={images[i]} guest={i >= 5} />
+			<ContestUser
+				{user}
+				prevUser={prevLeetcodeData[i]}
+				photo={images[i]}
+				guest={i >= 5}
+				index={i}
+			/>
 		{/each}
 	</div>
 </div>
