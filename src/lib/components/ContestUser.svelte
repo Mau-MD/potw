@@ -56,7 +56,11 @@
 </script>
 
 <div class="flex flex-col items-center justify-center gap-10">
-	<div class="w-[100px] h-[100px] bg-gray-400 rounded-[50%]">
+	<div
+		class={`w-[100px] h-[100px] bg-gray-400 rounded-[50%] ${
+			user.place <= 3 && 'shadow-lg shadow-white/50'
+		}`}
+	>
 		<img src={photo} class="w-full h-full object-cover rounded-[50%]" alt={user.username} />
 	</div>
 	<a href={user.link} target="_blank" rel="noopener noreferrer">
