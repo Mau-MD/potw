@@ -12,7 +12,8 @@
 		'https://i.imgur.com/Ksp5CWp.jpg',
 		'https://i.imgur.com/q0NQRDK.jpg',
 		'https://i.imgur.com/VpQqSAU.jpg', // Shago
-		'https://i.imgur.com/ySVfkmg.jpg'
+		'https://i.imgur.com/ySVfkmg.jpg', // Chumimi
+		'https://i.imgur.com/L6FVwvB.jpg'
 	];
 </script>
 
