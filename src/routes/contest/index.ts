@@ -25,9 +25,6 @@ export const get: RequestHandler = async ({ params }): Promise<{ body: any }> =>
 			'Clanie1',
 			'MrJ85',
 			'IAmRamiro3',
-			'Mani69',
-			'el-shago',
-			'chumimi',
 			'iso-bravo'
 		];
 

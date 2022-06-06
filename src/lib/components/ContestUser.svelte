@@ -34,8 +34,8 @@
 		medium = user.mediumSolved - prevUser.mediumSolved;
 		hard = user.hardSolved - prevUser.hardSolved;
 		points = allTime
-			? user.easySolved + 3 * user.mediumSolved + 7 * user.hardSolved
-			: easy + 3 * medium + 7 * hard;
+			? user.easySolved + 3 * user.mediumSolved + 5 * user.hardSolved
+			: easy + 3 * medium + 5 * hard;
 	}
 
 	$: {
@@ -52,19 +52,21 @@
 				isAnimating = false;
 				clearInterval(interval);
 			}
-		}, 80);
+		}, 1000 / points);
 	});
+	
+
 </script>
 
 <div class="flex flex-col items-center justify-center gap-10">
+	<a href={user.link} target="_blank" rel="noopener noreferrer" class="flex flex-col items-center justify-center gap-10">
 	<div
-		class={`w-[100px] h-[100px] bg-gray-400 rounded-[50%] ${
+		class={`w-[100px] h-[100px] bg-gray-400 rounded-[50%] transition-transform hover:scale-105 cursor-pointer ${
 			user.place <= 3 && 'shadow-lg shadow-white/50'
 		}`}
 	>
 		<img src={photo} class="w-full h-full object-cover rounded-[50%]" alt={user.username} />
 	</div>
-	<a href={user.link} target="_blank" rel="noopener noreferrer">
 		<h2 class={`text-xl font-bold ${color}`}>
 			#{user.place} - {user.username}
 		</h2>
