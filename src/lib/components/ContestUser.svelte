@@ -19,6 +19,9 @@
 
 	let color = 'text-white';
 
+	function truncate(str: string, n: number) {
+		return str.length > n ? str.slice(0, n - 1) + '...' : str;
+	}
 	$: {
 		if (user.place === 1) {
 			color = 'text-yellow-400';
@@ -54,21 +57,24 @@
 			}
 		}, 1000 / points);
 	});
-	
-
 </script>
 
 <div class="flex flex-col items-center justify-center gap-10">
-	<a href={user.link} target="_blank" rel="noopener noreferrer" class="flex flex-col items-center justify-center gap-10">
-	<div
-		class={`w-[100px] h-[100px] bg-gray-400 rounded-[50%] transition-transform hover:scale-105 cursor-pointer ${
-			user.place <= 3 && 'shadow-lg shadow-white/50'
-		}`}
+	<a
+		href={user.link}
+		target="_blank"
+		rel="noopener noreferrer"
+		class="flex flex-col items-center justify-center gap-10"
 	>
-		<img src={photo} class="w-full h-full object-cover rounded-[50%]" alt={user.username} />
-	</div>
+		<div
+			class={`w-[100px] h-[100px] bg-gray-400 rounded-[50%] transition-transform hover:scale-105 cursor-pointer ${
+				user.place <= 3 && 'shadow-lg shadow-white/50'
+			}`}
+		>
+			<img src={photo} class="w-full h-full object-cover rounded-[50%]" alt={user.username} />
+		</div>
 		<h2 class={`text-xl font-bold ${color}`}>
-			#{user.place} - {user.username}
+			#{user.place} - {truncate(user.username, 10)}
 		</h2>
 		{#if guest}
 			<h3 class={`text-sm text-center font-bold ${color}`}>
