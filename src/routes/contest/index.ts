@@ -14,7 +14,7 @@ const getPoints = (lastUser: LeetcodeUser, currUser: LeetcodeUser) => {
 		currUser.easySolved -
 		lastUser.easySolved +
 		3 * (currUser.mediumSolved - lastUser.mediumSolved) +
-		7 * (currUser.hardSolved - lastUser.hardSolved)
+		5 * (currUser.hardSolved - lastUser.hardSolved)
 	);
 };
 export const get: RequestHandler = async ({ params }): Promise<{ body: any }> => {
