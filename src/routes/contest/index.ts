@@ -25,7 +25,7 @@ export const get: RequestHandler = async ({ params }): Promise<{ body: any }> =>
 			'Clanie1',
 			'MrJ85',
 			'IAmRamiro3',
-			'iso-bravo'
+			'Mau-MD'
 		];
 
 		const data = await Promise.all(usernames.map(getUserData));

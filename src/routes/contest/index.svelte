@@ -23,7 +23,8 @@
 		'https://i.imgur.com/KQbpFf2.jpg',
 		'https://i.imgur.com/ItW7cAs.jpg',
 		'https://i.imgur.com/Ksp5CWp.jpg',
-		'https://i.imgur.com/L6FVwvB.jpg'
+		'https://i.imgur.com/L6FVwvB.jpg',
+		'https://imgur.com/Ldz8X8X.jpg'
 	];
 </script>
 
@@ -48,19 +49,17 @@
 	</div>
 	<div class="grid grid-cols-1 md:grid-cols-5  w-full  gap-10">
 		{#each currLeetcodeData as user, i}
-			{#if i < 5}
-				<ContestUser
-					{user}
-					prevUser={prevLeetcodeData[i]}
-					photo={images[i]}
-					guest={i >= 5}
-					index={i}
-				/>
-			{/if}
+			<ContestUser
+				{user}
+				prevUser={prevLeetcodeData[i]}
+				photo={images[i]}
+				guest={false}
+				index={i}
+			/>
 		{/each}
 	</div>
 
-	{#if showGuests}
+	<!-- {#if showGuests}
 		<div class="grid grid-cols-1 md:grid-cols-1  w-full  gap-10 mt-20">
 			{#each currLeetcodeData as user, i}
 				{#if i >= 5}
@@ -79,5 +78,5 @@
 		class="border-2 border-white px-4 py-2 rounded-md transition-all hover:bg-white hover:text-black mt-20"
 		on:click={() => (showGuests = !showGuests)}
 		>{showGuests ? 'Ocultar Invitados' : 'Ver Invitados'}</button
-	>
+	> -->
 </div>
