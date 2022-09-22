@@ -23,7 +23,6 @@
 		'https://i.imgur.com/KQbpFf2.jpg',
 		'https://i.imgur.com/ItW7cAs.jpg',
 		'https://i.imgur.com/Ksp5CWp.jpg',
-		'https://i.imgur.com/L6FVwvB.jpg',
 		'https://imgur.com/Ldz8X8X.jpg'
 	];
 </script>
