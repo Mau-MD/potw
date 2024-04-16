@@ -1,6 +1,6 @@
-import type { GetParams, RequestHandler } from '@sveltejs/kit/types/internal';
-import fs from 'fs';
+import type { RequestHandler } from '@sveltejs/kit/types/internal';
 import axios from 'axios';
+import fs from 'fs';
 
 import prevLeetcodeData from './data.json';
 
@@ -20,12 +20,19 @@ const getPoints = (lastUser: LeetcodeUser, currUser: LeetcodeUser) => {
 export const get: RequestHandler = async ({ params }): Promise<{ body: any }> => {
 	try {
 		const usernames = [
-			'adrianfersa',
-			'voltageDifference',
-			'Clanie1',
-			'MrJ85',
-			'IAmRamiro3',
-			'Mau-MD'
+			'Ivanfmms',
+			'ElNito7',
+			'Dusuan',
+			'emiliano_0X1',
+			'Maza-paneitor',
+			'NicoEscaroz',
+			'Civza',
+			'pecezon',
+			'h4ru77',
+			'Rhamses09',
+			'ximeenavargas',
+			'ericpapazzz',
+			'kamichips'
 		];
 
 		const data = await Promise.all(usernames.map(getUserData));
@@ -61,6 +68,8 @@ export const get: RequestHandler = async ({ params }): Promise<{ body: any }> =>
 			}
 			return { ...curr, place: pts.place, link: `https://leetcode.com/${curr.username}/` };
 		});
+
+		fs.writeFileSync('./src/routes/contest/data.json', JSON.stringify(currLeetcodeData, null, 2));
 
 		return {
 			body: {
